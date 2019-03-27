@@ -1,8 +1,6 @@
-doubleMe x		= x + x
+main = do
+	putStrLn "Ratomanocu"
+	name <- getLine
+	putStrLn ("Ratomanocu " ++ name)
 
-doubleUs x y		= doubleMe x + doubleMe y
 
-doubleSmallNumber x	= if x > 100 then x else doubleMe x
-doubleSmallNumber' x	= (if x > 100 then x else doubleMe x) + 1
-
-fernandoIgor		= "Fernando Igor"

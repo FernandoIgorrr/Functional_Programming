@@ -130,12 +130,13 @@ myBreak p xxs@(x:xs)
 	|otherwise	= (x:ys,zs)
 		where (ys,zs) = myBreak p xs
 
-mySplitAt :: (a -> Bool) -> [a] -> ([a],[a])
-mySplitAt p [] = ([],[])
-mySplitAt p xxs@(x:xs)
-	| p x		= ([x],xs)
+mySplitAt :: Int -> [a] -> ([a],[a])
+mySplitAt _ []		= ([],[])
+mySplitAt 0 xs		= ([],xs)
+mySplitAt n xxs@(x:xs)
+	| n < 0		= ([],xxs)
 	| otherwise	= (x:ys,zs)
-		where (ys,zs) = mySplitAt p xs
+		where (ys,zs) = mySplitAt (n-1) xs
 
 myLines :: String -> [String]
 myLines []	= []
@@ -145,8 +146,8 @@ myWords :: String -> [String]
 myWords []		= []
 myWords xxs@(x:xs)
 	| x == ' '	= myWords xs
-	| otherwise	= ys:myWords rest
-		where (ys, rest) = myBreak (== ' ') xxs
+	| otherwise	= ys : myWords rest
+		where (ys,rest) = myBreak (' '==) xxs 
 
 myFst :: (a,b) -> a
 myFst (x,_)	= x
