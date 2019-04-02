@@ -138,6 +138,13 @@ mySplitAt n xxs@(x:xs)
  | otherwise     = (x:ys,zs)
  where (ys,zs) = mySplitAt (n-1) xs
 
+mySplitAt' :: Int -> [a] -> ([a],[a])
+mySplitAt' _ [] = ([],[])
+mySplitAt' 0 xs = ([],xs)
+mySplitAt' n xs
+ |n < 0     = ([],xs)
+ |otherwise = (myTake n xs,myDrop n xs)
+
 myLines :: String -> [String]
 myLines [] = []
 myLines s  = [s]
